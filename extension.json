@@ -1,0 +1,26 @@
+{
+  "id": "table-ui-extension",
+  "name": "Table",
+  "srcdoc": "./build/index.html",
+  "fieldTypes": ["Object"],
+  "parameters": {
+    "instance": [
+      {
+        "id": "delimiter",
+        "name": "Delimiter",
+        "type": "Symbol",
+        "description": "The character(s) used to separate the header values. Change ",
+        "default": ",",
+        "required": true
+      },
+      {
+        "id": "headerStr",
+        "name": "Headers",
+        "type": "Symbol",
+        "description": "List of header values for the table. Separate the headers with the value specified in \"Delimiter.\"",
+        "default": "Header 1,Header 2,Header 3",
+        "required": true
+      }
+    ]
+  }
+}
