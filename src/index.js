@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import {
   Button,
   Checkbox,
@@ -10,41 +10,38 @@ import {
   TableBody,
   TableHead,
   TableRow,
-  TableCell
-} from "@contentful/forma-36-react-components";
-import { init } from "contentful-ui-extensions-sdk";
-import "@contentful/forma-36-react-components/dist/styles.css";
-import "@contentful/forma-36-fcss/dist/styles.css";
-import "./index.css";
+  TableCell,
+} from '@contentful/forma-36-react-components';
+import { init } from 'contentful-ui-extensions-sdk';
+import '@contentful/forma-36-react-components/dist/styles.css';
+import '@contentful/forma-36-fcss/dist/styles.css';
+import './index.css';
+import { DataProvider } from './contexts/DataContext';
+import { DataDispatchProvider } from './contexts/DataDispatchContext';
 
 const App = ({ extension }) => {
-  const { window: xwindow, field } = extension;
-  const data = field.getValue();
-
-  const [, forceUpdate] = useState(null);
+  const { window: xWindow, field } = extension;
+  const [data, setData] = useState(field.getValue());
 
   useEffect(() => {
-    xwindow.startAutoResizer();
+    xWindow.startAutoResizer();
 
-    return () => xwindow.stopAutoResizer();
-  }, [xwindow]);
+    return () => xWindow.stopAutoResizer();
+  }, [xWindow]);
 
   useEffect(() => {
-    const detachExternalChangeHandler = field.onValueChanged(() => console.log(data) || forceUpdate({}));
+    const detachExternalChangeHandler = field.onValueChanged(() =>
+      setData(field.getValue())
+    );
 
     return () => detachExternalChangeHandler();
-  }, [field, forceUpdate, data]);
+  }, [field]);
 
-  const onChange = event => {
-    field.setValue({ test: event.target.value });
-  };
-
-  //return <div style={{backgroundColor: `red`, height: 100}}/>
-  return <input onChange={onChange} value={data.test}/>;
+  return <div />;
 };
 
 App.propTypes = {
-  extension: PropTypes.object.isRequired
+  extension: PropTypes.object.isRequired,
 };
 
 //   createTableRow(totalCells) {
@@ -139,7 +136,7 @@ App.propTypes = {
 init(extension => {
   ReactDOM.render(
     <App extension={extension} />,
-    document.getElementById("root")
+    document.getElementById(`root`)
   );
 });
 
