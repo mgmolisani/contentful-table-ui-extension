@@ -1,7 +1,7 @@
 {
   "id": "table-ui-extension",
   "name": "Table",
-  "srcdoc": "./build/index.html",
+  "src": "https://temasys-contentful-ui-extensions.netlify.com",
   "fieldTypes": ["Object"],
   "parameters": {
     "instance": [

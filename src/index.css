@@ -7,3 +7,7 @@ div {
   font: inherit;
   vertical-align: baseline;
 }
+
+body {
+  overflow: hidden;
+}
