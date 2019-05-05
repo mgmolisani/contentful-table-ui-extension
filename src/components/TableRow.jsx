@@ -10,14 +10,32 @@ import { tableDataRowPropTypes } from '../utils/tableUtils';
 import TableInput from './TableInput';
 
 const TableRow = ({ row }) => {
-  const dispatch = useTableDispatchContext();
+  const {
+    pasteTableData,
+    updateTableCell,
+    removeTableRow,
+  } = useTableDispatchContext();
 
   const onChangeHandlers = useMemo(
     () =>
-      row.columns.map(column => event =>
-        dispatch.updateTableCell(event.target.value, row.id, column.id)
-      ),
-    [dispatch, row]
+      row.columns.map(column => event => {
+        event.preventDefault();
+        updateTableCell(event.target.value, row.id, column.id);
+      }),
+    [row.columns, row.id, updateTableCell]
+  );
+
+  const onPasteHandlers = useMemo(
+    () =>
+      row.columns.map(column => event => {
+        event.preventDefault();
+        pasteTableData(
+          event.clipboardData.getData(`text/plain`),
+          row.id,
+          column.id
+        );
+      }),
+    [pasteTableData, row.columns, row.id]
   );
 
   return (
@@ -26,6 +44,7 @@ const TableRow = ({ row }) => {
         <TableCell key={column.id}>
           <TableInput
             onChange={onChangeHandlers[columnIndex]}
+            onPaste={onPasteHandlers[columnIndex]}
             value={column.value}
           />
         </TableCell>
@@ -33,6 +52,7 @@ const TableRow = ({ row }) => {
       <TableCell36
         className={`f36-padding--xs`}
         style={{
+          userSelect: `none`,
           verticalAlign: `middle`,
         }}
       >
@@ -41,7 +61,7 @@ const TableRow = ({ row }) => {
             buttonType={`negative`}
             iconProps={{ icon: `Close` }}
             label={`Delete row ${row.id}`}
-            onClick={() => dispatch.removeTableRow(row.id)}
+            onClick={() => removeTableRow(row.id)}
           />
         </div>
       </TableCell36>
