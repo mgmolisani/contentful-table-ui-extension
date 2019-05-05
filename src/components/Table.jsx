@@ -5,7 +5,6 @@ import { tablePropTypes } from '../utils/tableUtils';
 import TableHeader from './TableHeader';
 
 const Table = ({ table }) => {
-  console.log(table);
   return (
     <Table36>
       <TableHeader headers={table.headers} />
