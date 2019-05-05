@@ -1,3 +1,5 @@
+import { isTableEmpty } from './tableUtils';
+
 export const debounceSetValue = field => {
   let timeout = null;
 
@@ -5,8 +7,7 @@ export const debounceSetValue = field => {
     clearTimeout(timeout);
 
     timeout = setTimeout(() => {
-      console.log(`setting value`);
-      field.setValue(value);
+      isTableEmpty(value) ? field.removeValue() : field.setValue(value);
     }, delay);
   };
 };

@@ -11,4 +11,4 @@ TableInput.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-export default TableInput;
+export default memo(TableInput);
