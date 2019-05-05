@@ -36,20 +36,20 @@ const removeTableRow = (table, rowId) => {
 };
 
 const addTableRow = table => {
-  const id = table.data.lastUsedId + 1;
+  const id = table.data.nextId;
   const newRow = {
     columns: table.headers.map((header, index) => ({
       id: index,
       value: ``,
     })),
     id,
-    lastUsedId: table.headers.length - 1,
+    nextId: table.headers.length,
   };
   return {
     ...table,
     data: {
       ...table.data,
-      lastUsedId: id,
+      nextId: id + 1,
       rows: [...table.data.rows, newRow],
     },
   };

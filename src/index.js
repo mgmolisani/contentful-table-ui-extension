@@ -12,13 +12,13 @@ import { debounceSetValue } from './utils/fieldUtils';
 
 const createDefaultTable = ({ headerStr, delimiter }) => {
   const headers = headerStr.split(delimiter);
-  const columns = headers.length;
 
   return {
-    columns,
-    data: [],
+    data: {
+      nextId: 0,
+      rows: [],
+    },
     headers,
-    rows: 0,
   };
 };
 
@@ -88,45 +88,44 @@ App.propTypes = {
 };
 
 init(extension => {
-  // extension.field
-  //   .setValue({
-  //     data: {
-  //       id: 1,
-  //       lastUsedId: 2,
-  //       rows: [
-  //         {
-  //           id: 1,
-  //           lastUsedId: 2,
-  //           columns: [
-  //             {
-  //               id: 1,
-  //               value: `this is cell 1`,
-  //             },
-  //             {
-  //               id: 2,
-  //               value: `this is cell 2`,
-  //             },
-  //           ],
-  //         },
-  //         {
-  //           id: 2,
-  //           lastUsedId: 2,
-  //           columns: [
-  //             {
-  //               id: 1,
-  //               value: `this is cell 1`,
-  //             },
-  //             {
-  //               id: 2,
-  //               value: `this is cell 2`,
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //     headers: [`Specification`, `Value`],
-  //   })
-  //   .then(console.log(extension.field.getValue()));
+  extension.field
+    .setValue({
+      data: {
+        nextId: 2,
+        rows: [
+          {
+            id: 0,
+            nextId: 2,
+            columns: [
+              {
+                id: 0,
+                value: `this is cell 1`,
+              },
+              {
+                id: 1,
+                value: `this is cell 2`,
+              },
+            ],
+          },
+          {
+            id: 1,
+            nextId: 2,
+            columns: [
+              {
+                id: 0,
+                value: `this is cell 1`,
+              },
+              {
+                id: 1,
+                value: `this is cell 2`,
+              },
+            ],
+          },
+        ],
+      },
+      headers: [`Specification`, `Value`],
+    })
+    .then(console.log(extension.field.getValue()));
   ReactDOM.render(
     <App extension={extension} />,
     document.getElementById(`root`)

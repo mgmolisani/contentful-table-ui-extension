@@ -10,11 +10,11 @@ export const tableDataPointPropTypes = PropTypes.shape({
 export const tableDataRowPropTypes = PropTypes.shape({
   columns: PropTypes.arrayOf(tableDataPointPropTypes),
   id: PropTypes.number.isRequired,
-  lastUsedId: PropTypes.number.isRequired,
+  nextId: PropTypes.number.isRequired,
 });
 
 export const tableDataPropTypes = PropTypes.shape({
-  lastUsedId: PropTypes.number.isRequired,
+  nextId: PropTypes.number.isRequired,
   rows: PropTypes.arrayOf(tableDataRowPropTypes).isRequired,
 });
 
