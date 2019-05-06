@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 export const isTableEmpty = table => !table.data.rows.length;
 
 export const convertExcelTableData = data => {
-  const rows = data.split(`\n`);
+  const rows = data.split(`\r\n`);
   return rows.map(row => row.split(`\t`));
 };
 
