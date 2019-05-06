@@ -30,7 +30,8 @@ const pasteTableData = (table, data, rowId, columnId) => {
           ? {
               ...row,
               columns: row.columns.map((column, columnIndex) =>
-                columnIndex >= columnOffset && columnIndex < columnOffset + numColumnsPasted
+                columnIndex >= columnOffset &&
+                columnIndex < columnOffset + numColumnsPasted
                   ? {
                       ...column,
                       value:

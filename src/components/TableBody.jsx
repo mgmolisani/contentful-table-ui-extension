@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { TableBody as TableBody36 } from '@contentful/forma-36-react-components';
 import TableRow from './TableRow';
 import { tableDataPropTypes } from '../utils/tableUtils';
