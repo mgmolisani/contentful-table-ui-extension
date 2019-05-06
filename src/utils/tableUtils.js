@@ -11,21 +11,21 @@ export const addTableRows = (table, rows) => {
   let newTable = table;
 
   for (let i = 0; i < rows; i++) {
-    const id = newTable.data.nextId;
+    const uid = newTable.data.nextId;
     const newRow = {
       columns: newTable.headers.map((header, index) => ({
-        id: index,
+        uid: index,
         value: ``,
       })),
-      id,
       nextId: newTable.headers.length,
+      uid,
     };
 
     newTable = {
       ...newTable,
       data: {
         ...newTable.data,
-        nextId: id + 1,
+        nextId: uid + 1,
         rows: [...newTable.data.rows, newRow],
       },
     };
@@ -35,14 +35,14 @@ export const addTableRows = (table, rows) => {
 };
 
 export const tableDataPointPropTypes = PropTypes.shape({
-  id: PropTypes.number.isRequired,
+  uid: PropTypes.number.isRequired,
   value: PropTypes.string.isRequired,
 });
 
 export const tableDataRowPropTypes = PropTypes.shape({
   columns: PropTypes.arrayOf(tableDataPointPropTypes),
-  id: PropTypes.number.isRequired,
   nextId: PropTypes.number.isRequired,
+  uid: PropTypes.number.isRequired,
 });
 
 export const tableDataPropTypes = PropTypes.shape({

@@ -7,7 +7,7 @@ const TableBody = ({ data }) => {
   return (
     <TableBody36>
       {data.rows.map(row => (
-        <TableRow key={row.id} row={row} />
+        <TableRow key={row.uid} row={row} />
       ))}
     </TableBody36>
   );

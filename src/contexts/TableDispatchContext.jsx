@@ -8,9 +8,9 @@ const pasteTableData = (table, data, rowId, columnId) => {
   const numColumnsPasted = convertedData[0].length;
   const currentNumRows = table.data.rows.length;
 
-  const rowOffset = table.data.rows.findIndex(row => row.id === rowId);
+  const rowOffset = table.data.rows.findIndex(row => row.uid === rowId);
   const columnOffset = table.data.rows[rowOffset].columns.findIndex(
-    column => column.id === columnId
+    column => column.uid === columnId
   );
 
   let newTable = table;
@@ -54,11 +54,11 @@ const updateTableCell = (table, value, rowId, columnId) => {
     data: {
       ...table.data,
       rows: table.data.rows.map(row =>
-        row.id === rowId
+        row.uid === rowId
           ? {
               ...row,
               columns: row.columns.map(column =>
-                column.id === columnId
+                column.uid === columnId
                   ? {
                       ...column,
                       value,
@@ -77,7 +77,7 @@ const removeTableRow = (table, rowId) => {
     ...table,
     data: {
       ...table.data,
-      rows: table.data.rows.filter(row => row.id !== rowId),
+      rows: table.data.rows.filter(row => row.uid !== rowId),
     },
   };
 };

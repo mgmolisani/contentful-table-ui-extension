@@ -20,9 +20,9 @@ const TableRow = ({ row }) => {
     () =>
       row.columns.map(column => event => {
         event.preventDefault();
-        updateTableCell(event.target.value, row.id, column.id);
+        updateTableCell(event.target.value, row.uid, column.uid);
       }),
-    [row.columns, row.id, updateTableCell]
+    [row.columns, row.uid, updateTableCell]
   );
 
   const onPasteHandlers = useMemo(
@@ -31,17 +31,17 @@ const TableRow = ({ row }) => {
         event.preventDefault();
         pasteTableData(
           event.clipboardData.getData(`text/plain`),
-          row.id,
-          column.id
+          row.uid,
+          column.uid
         );
       }),
-    [pasteTableData, row.columns, row.id]
+    [pasteTableData, row.columns, row.uid]
   );
 
   return (
     <TableRow36>
       {row.columns.map((column, columnIndex) => (
-        <TableCell key={column.id}>
+        <TableCell key={column.uid}>
           <TableInput
             onChange={onChangeHandlers[columnIndex]}
             onPaste={onPasteHandlers[columnIndex]}
@@ -60,8 +60,8 @@ const TableRow = ({ row }) => {
           <IconButton
             buttonType={`negative`}
             iconProps={{ icon: `Close` }}
-            label={`Delete row ${row.id}`}
-            onClick={() => removeTableRow(row.id)}
+            label={`Delete row ${row.uid}`}
+            onClick={() => removeTableRow(row.uid)}
           />
         </div>
       </TableCell36>

@@ -94,29 +94,29 @@ init(extension => {
   //       nextId: 2,
   //       rows: [
   //         {
-  //           id: 0,
+  //           uid: 0,
   //           nextId: 2,
   //           columns: [
   //             {
-  //               id: 0,
+  //               uid: 0,
   //               value: `this is cell 1`,
   //             },
   //             {
-  //               id: 1,
+  //               uid: 1,
   //               value: `this is cell 2`,
   //             },
   //           ],
   //         },
   //         {
-  //           id: 1,
+  //           uid: 1,
   //           nextId: 2,
   //           columns: [
   //             {
-  //               id: 0,
+  //               uid: 0,
   //               value: `this is cell 1`,
   //             },
   //             {
-  //               id: 1,
+  //               uid: 1,
   //               value: `this is cell 2`,
   //             },
   //           ],
